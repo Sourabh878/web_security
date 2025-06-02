@@ -247,19 +247,19 @@ const WebsitePerformanceAnalyzer: React.FC = () => {
                     type="monotone"
                     dataKey="value"
                     name="Load Time"
-                    stroke="var(--primary)"
+                    stroke="#3b82f6"
                     strokeWidth={3}
                     connectNulls
                     dot={{
                       fill: 'var(--background)',
-                      stroke: 'var(--primary)',
+                      stroke: "#3b82f6",
                       strokeWidth: 2,
                       r: 6
                     }}
                     activeDot={{
                       r: 8,
                       fill: 'var(--primary)',
-                      stroke: 'var(--background)',
+                      stroke: "#3b82f6",
                       strokeWidth: 2
                     }}
                     isAnimationActive={true}

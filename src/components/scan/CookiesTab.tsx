@@ -63,11 +63,11 @@ const CookiesTab = ({ domain }: CookiesTabProps) => {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-2 px-2">Name</th>
-                      <th className="text-left py-2 px-2">Domain</th>
-                      <th className="text-left py-2 px-2">Type</th>
-                      <th className="text-left py-2 px-2">Attributes</th>
-                      <th className="text-left py-2 px-2">Expires</th>
+                      <th className="text-center py-2 px-2">Name</th>
+                      <th className="text-center py-2 px-2">Domain</th>
+                      <th className="text-center py-2 px-2">Type</th>
+                      <th className="text-center py-2 px-2">Attributes</th>
+                      <th className="text-center py-2 px-2">Expires</th>
                     </tr>
                   </thead>
                   <tbody>

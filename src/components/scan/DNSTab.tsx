@@ -42,7 +42,7 @@ const DNSTab = ({ domain }: DNSTabProps) => {
                     <td className="py-2 px-4 font-mono text-sm break-all">
                       {record.value}
                     </td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4 text-left">
                       {record.ttl || "N/A"}
                     </td>
                   </tr>
@@ -65,9 +65,9 @@ const DNSTab = ({ domain }: DNSTabProps) => {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2">Port</th>
-                    <th className="text-left py-2">Status</th>
-                    <th className="text-left py-2">Service</th>
+                    <th className="text-center py-2">Port</th>
+                    <th className="text-center py-2">Status</th>
+                    <th className="text-center py-2">Service</th>
                   </tr>
                 </thead>
                 <tbody>

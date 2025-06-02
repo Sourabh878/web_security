@@ -23,6 +23,8 @@ export const getIPInfo = async (req, res) => {
     if (err) return res.status(500).json({ error: "DNS lookup failed" });
     try {
       const ipRes = await axios.get(`http://ip-api.com/json/${address}`);
+      console.log("ip: ", ipRes, address);
+      
       res.json({ ip: address, location: ipRes.data });
     } catch {
       res.status(500).json({ error: "IP lookup failed" });
@@ -53,6 +55,8 @@ export const getDNSRecords = (req, res) => {
   const domain = req.query.domain;
   dns.resolveAny(domain, (err, records) => {
     if (err) return res.status(500).json({ error: "DNS resolve failed" });
+    console.log("records: ", records);
+    
     res.json({ records });
   });
 };
