@@ -30,19 +30,19 @@ const DNSTab = ({ domain }: DNSTabProps) => {
                 <tr className="border-b">
                   <th className="text-left py-2 px-4">Type</th>
                   <th className="text-left py-2 px-4">Value</th>
-                  <th className="text-left py-2 px-4">TTL</th>
+                  <th className="text-center py-2 px-4">TTL</th>
                 </tr>
               </thead>
               <tbody>
                 {dnsQuery.data.records.map((record, index) => (
                   <tr key={index} className="border-b">
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4 text-left">
                       <Badge variant="outline">{record.type}</Badge>
                     </td>
-                    <td className="py-2 px-4 font-mono text-sm break-all">
+                    <td className="py-2 px-4 font-mono text-sm break-all text-left">
                       {record.value}
                     </td>
-                    <td className="py-2 px-4 text-left">
+                    <td className="py-2 px-4 text-center">
                       {record.ttl || "N/A"}
                     </td>
                   </tr>
