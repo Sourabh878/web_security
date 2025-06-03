@@ -1,4 +1,3 @@
-
 import { Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -37,85 +36,48 @@ const Index = () => {
                   Learn More
                 </Button>
               </Link>
-
-              <Link to="/Web_performence">
-                <Button size="lg"  className="text-lg px-8">
-                  Website Performance
-                </Button>
-              </Link>
             </div>
           </div>
         </section>
         
         {/* Features Section */}
-        <section className="py-16 bg-secondary/50">
-          <div className="container mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Comprehensive Security Analysis
-            </h2>
+        <section className="py-16 px-4 bg-muted/50">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <FeatureCard 
-                title="Domain Information" 
-                description="Get detailed information about domain ownership, registration, and hosting details."
-              />
-              <FeatureCard 
-                title="SSL/TLS Security" 
-                description="Check SSL certificate validity, encryption strength, and protocol support."
-              />
-              <FeatureCard 
-                title="Security Headers" 
-                description="Analyze HTTP security headers to protect against XSS, clickjacking, and other attacks."
-              />
-              <FeatureCard 
-                title="DNS Records" 
-                description="Review DNS configuration and check for common misconfigurations and vulnerabilities."
-              />
-              <FeatureCard 
-                title="Port Scanning" 
-                description="Discover open ports and detect potentially vulnerable services."
-              />
-              <FeatureCard 
-                title="Malware Detection" 
-                description="Scan for known malware signatures and identify potential threats."
-              />
+              <div className="bg-card p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-4">Security Analysis</h3>
+                <p className="text-muted-foreground">
+                  Comprehensive security scanning including SSL/TLS, headers, DNS, and malware detection.
+                </p>
+              </div>
+              
+              <div className="bg-card p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-4">Performance Metrics</h3>
+                <p className="text-muted-foreground">
+                  Detailed performance analysis with metrics like FCP, LCP, Speed Index, and TTI.
+                </p>
+              </div>
+              
+              <div className="bg-card p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-4">AI-Powered Insights</h3>
+                <p className="text-muted-foreground">
+                  Get intelligent recommendations and explanations powered by advanced AI.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
-        
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 text-center">
-          <div className="container mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-bold mb-6">Start Securing Your Website Today</h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Don't wait until it's too late. Scan your website now to identify vulnerabilities and protect your digital assets.
-            </p>
-            <Link to="/scan">
-              <Button size="lg" className="text-lg px-8">
-                Scan Your Website
-              </Button>
-            </Link>
           </div>
         </section>
       </main>
       
       {/* Footer */}
-      <footer className="bg-secondary py-8">
+      <footer className="bg-muted py-6 md:py-8 mt-auto">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
           <p>© {new Date().getFullYear()} SecuriScan. All rights reserved.</p>
-          <p className="mt-2">A powerful website security scanning tool.</p>
+          <p className="mt-2 text-sm">A powerful website security and performance scanning tool.</p>
         </div>
       </footer>
-    </div>
-  );
-};
-
-// Feature Card Component
-const FeatureCard = ({ title, description }: { title: string; description: string }) => {
-  return (
-    <div className="bg-card rounded-lg p-6 shadow-sm transition-all hover:shadow-md">
-      <h3 className="text-xl font-medium mb-3">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
     </div>
   );
 };

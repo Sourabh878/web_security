@@ -3,13 +3,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useIPInfoQuery, usePingQuery, useSSLInfoQuery, useDNSQuery, usePortQuery, useHeadersQuery, useMalwareQuery, useCookieQuery } from "@/hooks/useScanQueries";
 
 interface GeminiProps {
-  finalQuery: string;
-  setResponse: (response: string) => void;
-  onClose: () => void;
   domain: string;
+  onResponse: (response: string) => void;
+  response: string;
 }
 
-const Gemini = ({ finalQuery, setResponse, onClose, domain }: GeminiProps) => {
+const Gemini = ({ domain, onResponse, response }: GeminiProps) => {
   const [chatHistory, setChatHistory] = useState([]);
   const [userInput, setUserInput] = useState("");
   const chatRef = useRef(null);
@@ -110,39 +109,47 @@ const Gemini = ({ finalQuery, setResponse, onClose, domain }: GeminiProps) => {
     ];
 
     setChatHistory(updatedHistory);
-    setResponse(responseText);
+    onResponse(responseText);
   };
 
   useEffect(() => {
-    if (finalQuery) {
-      handleSend(finalQuery);
+    if (response) {
+      handleSend(response);
     }
-  }, [finalQuery]);
+  }, [response]);
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <div className="flex-1 overflow-hidden">
-        <div className="space-y-2 overflow-y-auto h-full p-4">
+        <div className="space-y-4 overflow-y-auto h-full p-4 pb-20">
           {chatHistory.map((msg, idx) => (
             <div
               key={idx}
-              className={`p-2 rounded ${msg.role === "user" ? "bg-blue-100 text-right" : "bg-gray-200 text-left"}`}
-              style={{ wordWrap: "break-word", overflowWrap: "break-word" }}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
-              <p className="text-sm">{msg.parts[0].text}</p>
+              <div
+                className={`max-w-[80%] rounded-lg p-3 ${
+                  msg.role === "user"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-100 text-gray-900"
+                }`}
+                style={{ wordWrap: "break-word", overflowWrap: "break-word" }}
+              >
+                <p className="text-sm whitespace-pre-wrap">{msg.parts[0].text}</p>
+              </div>
             </div>
           ))}
           <div ref={bottomRef} />
         </div>
       </div>
-  
-      <div className="p-4 border-t">
+
+      <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-white">
         <div className="flex gap-2">
           <input
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
-            className="flex-1 border rounded p-2 text-sm"
+            className="flex-1 border rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Ask about website security..."
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
@@ -152,7 +159,7 @@ const Gemini = ({ finalQuery, setResponse, onClose, domain }: GeminiProps) => {
           />
           <button
             onClick={() => handleSend(userInput)}
-            className="bg-blue-500 text-white px-4 rounded hover:bg-blue-600 transition-colors text-sm"
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
           >
             Send
           </button>

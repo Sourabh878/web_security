@@ -167,6 +167,28 @@ const WebsitePerformanceAnalyzer: React.FC = () => {
           </div>
         )}
 
+
+<div className="flex justify-end gap-4 mt-6 border-t pt-6 border-red-700">
+              <button
+                onClick={exportToCSV}
+                className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium shadow-md hover:shadow-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                Export CSV
+              </button>
+              <button
+                onClick={exportToPDF}
+                className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium shadow-md hover:shadow-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
+                </svg>
+                Export PDF
+              </button>
+            </div>
+
         {metrics && !isLoading && (
           <div id="report" className="bg-card rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-semibold mb-6 text-center">
@@ -271,20 +293,7 @@ const WebsitePerformanceAnalyzer: React.FC = () => {
               </ResponsiveContainer>
             </div>
 
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={exportToCSV}
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 rounded-md transition-colors"
-              >
-                Export CSV
-              </button>
-              <button
-                onClick={exportToPDF}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors"
-              >
-                Export PDF
-              </button>
-            </div>
+          
           </div>
         )}
       </div>

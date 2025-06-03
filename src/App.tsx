@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,7 +8,6 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import ScanPage from "./pages/ScanPage";
 import NotFound from "./pages/NotFound";
-import Web_performence from "./pages/web_performence";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +30,6 @@ const App = () => (
           <Route path="/about" element={<AboutPage />} />
           <Route path="/scan" element={<ScanPage />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/Web_performence" element={<Web_performence />} />
         </Routes>
       </TooltipProvider>
     </ThemeProvider>

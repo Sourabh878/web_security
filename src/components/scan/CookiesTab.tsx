@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Globe, Cookie } from "lucide-react";
 import ResultCard from "@/components/ResultCard";
@@ -73,19 +72,19 @@ const CookiesTab = ({ domain }: CookiesTabProps) => {
                   <tbody>
                     {cookieQuery.data.cookies.map((cookie, i) => (
                       <tr key={i} className="border-b">
-                        <td className="py-2 px-2 font-mono text-sm">{cookie.name}</td>
-                        <td className="py-2 px-2 text-sm">{cookie.domain}</td>
-                        <td className="py-2 px-2">
+                        <td className="py-2 px-2 font-mono text-sm text-center">{cookie.name}</td>
+                        <td className="py-2 px-2 text-sm text-center">{cookie.domain}</td>
+                        <td className="py-2 px-2 text-center">
                           <Badge variant="outline">{cookie.type}</Badge>
                         </td>
-                        <td className="py-2 px-2">
-                          <div className="flex flex-wrap gap-1">
+                        <td className="py-2 px-2 text-center">
+                          <div className="flex flex-wrap gap-1 justify-center">
                             {cookie.secure && <Badge variant="secondary">Secure</Badge>}
                             {cookie.httpOnly && <Badge variant="secondary">HttpOnly</Badge>}
                             {cookie.sameSite && <Badge variant="secondary">SameSite={cookie.sameSite}</Badge>}
                           </div>
                         </td>
-                        <td className="py-2 px-2 text-sm">
+                        <td className="py-2 px-2 text-sm text-center">
                           {cookie.expires ? new Date(cookie.expires * 1000).toLocaleDateString() : "Session"}
                         </td>
                       </tr>
