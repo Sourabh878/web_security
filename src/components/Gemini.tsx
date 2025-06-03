@@ -72,51 +72,39 @@ const Gemini = ({ domain, onResponse, response }: GeminiProps) => {
     if (!text.trim()) return;
     await initChat();
 
-    // Step 1: Check if the message is IP/location JSON
-    try {
-      const maybeJson = JSON.parse(text);
-      if (maybeJson?.ip && maybeJson?.location) {
-        websiteContextRef.current = `This IP/location data is for the current website:\n${text}`;
-        console.log("📌 Saved website context:", websiteContextRef.current);
-      }
-    } catch (err) {
-      // not valid JSON, ignore
-    }
-
-    // Step 2: If user says "current website", inject context
-    let finalText = text;
-    if (
-      text.toLowerCase().includes("current website") &&
-      websiteContextRef.current
-    ) {
-      finalText = `${websiteContextRef.current}\n\nUser Query: ${text}`;
-    }
-    
-    finalText = `Regarding the website ${domain}, here's my question: ${finalText}`;
-    console.log("🚀 Final prompt sent to Gemini:", finalText);
-
-    // Step 3: Send message
+    // Add user message to chat history
     const newHistory = [...chatHistory, { role: "user", parts: [{ text }] }];
     setChatHistory(newHistory);
     setUserInput("");
 
-    const result = await chatRef.current.sendMessage(finalText);
-    const responseText = result.response.text().replace(/[*]+/g, "").trim();
-
-    const updatedHistory = [
-      ...newHistory,
-      { role: "model", parts: [{ text: responseText }] },
-    ];
-
-    setChatHistory(updatedHistory);
-    onResponse(responseText);
-  };
-
-  useEffect(() => {
-    if (response) {
-      handleSend(response);
+    // Prepare the message for Gemini
+    let finalText = text;
+    if (text.toLowerCase().includes("current website") && websiteContextRef.current) {
+      finalText = `${websiteContextRef.current}\n\nUser Query: ${text}`;
     }
-  }, [response]);
+    finalText = `Regarding the website ${domain}, here's my question: ${finalText}`;
+
+    try {
+      const result = await chatRef.current.sendMessage(finalText);
+      const responseText = result.response.text().replace(/[*]+/g, "").trim();
+
+      // Add model response to chat history
+      const updatedHistory = [
+        ...newHistory,
+        { role: "model", parts: [{ text: responseText }] }
+      ];
+      setChatHistory(updatedHistory);
+      onResponse(responseText);
+    } catch (error) {
+      console.error("Error getting response from Gemini:", error);
+      // Add error message to chat history
+      const errorHistory = [
+        ...newHistory,
+        { role: "model", parts: [{ text: "Sorry, I encountered an error. Please try again." }] }
+      ];
+      setChatHistory(errorHistory);
+    }
+  };
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
